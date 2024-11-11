@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import logo from "../assets/started1.png"
-const Started1 = () => {
+const Started1 = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>
@@ -17,7 +17,7 @@ const Started1 = () => {
       
       <Text style={styles.shopTitle}>POWER BIKE SHOP</Text>
       
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('Screen2')}}>
         <Text style={styles.buttonText}>Get Started</Text>
       </TouchableOpacity>
     </View>
