@@ -3,9 +3,7 @@ import { View, Text, Image, Button, StyleSheet, TouchableOpacity } from 'react-n
 
 const ProductDetailScreen = ({ route }) => {
   const { product } = route.params;
-
-  // Calculate discount percentage and discounted price
-  const discountPercentage = 15; // Example discount percentage
+  const discountPercentage = 15; 
   const originalPrice = product.price;
   const discountedPrice = (originalPrice * (100 - discountPercentage)) / 100;
 
