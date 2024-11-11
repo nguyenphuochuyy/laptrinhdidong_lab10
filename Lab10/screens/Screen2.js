@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
   },
   bikeCard: {
     flex: 1,
-    // margin: 8,
     width : 150,
     marginRight : 10,
     marginTop : 10,

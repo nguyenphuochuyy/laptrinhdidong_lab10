@@ -18,7 +18,7 @@ const AddProductScreen = ({ navigation }) => {
  
       const defaultImageUrl = 'https://huyyyy.sirv.com/Images/item4.png';
      
-      dispatch(addProduct({ name, price: parseFloat(price), img: defaultImageUrl })).then(() => {
+      dispatch(addProduct({ name, price: parseFloat(price), img: defaultImageUrl , category : 'Mountain'})).then(() => {
         navigation.navigate('Screen2');
       });
   };
@@ -42,7 +42,7 @@ const AddProductScreen = ({ navigation }) => {
         keyboardType="numeric"
       />
 
-
+    
 
       {status === 'loading' ? (
         <ActivityIndicator size="large" color="#0000ff" />
