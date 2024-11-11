@@ -7,6 +7,7 @@ import Screen2 from './screens/Screen2';
 import { Provider } from 'react-redux';
 import store from "./store"
 import AddProductScreen from './screens/addproduct';
+import ProductDetailScreen from './screens/detail';
 const Stack = createStackNavigator();
 export default function App() {
   return (
@@ -38,7 +39,7 @@ export default function App() {
             component={AddProductScreen}
             options={{ title: 'Add New Product' }}
           />
-      
+      <Stack.Screen name="ProductDetail" component={ProductDetailScreen} options={{ title: 'Product Details' }} />
     </Stack.Navigator>
   </NavigationContainer>
     </Provider>

@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, FlatList, StyleSheet ,ActivityIndicator} from 'react-native';
 import { useEffect } from 'react';
 import { useDispatch , useSelector } from 'react-redux';
-import { fetchProducts ,addProduct } from '../productSlice';
+import { fetchProducts , addProduct } from '../productSlice';
 
-const BikeShopScreen = () => {
+const BikeShopScreen = ({navigation}) => {
     const dispatch = useDispatch();
     const { items: bikes, status, error } = useSelector((state) => state.products);
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -18,7 +18,8 @@ const BikeShopScreen = () => {
   const filteredBikes = selectedCategory === 'All' ? bikes : bikes.filter(bike => bike.category === selectedCategory);
 
   const renderBikeItem = ({ item }) => (
-    <View style={styles.bikeCard}>
+    <TouchableOpacity onPress={() => navigation.navigate('ProductDetail', { product: item })}>
+         <View style={styles.bikeCard}>
       <Image source={{ uri: item.img}} style={styles.bikeImage} />
       <Text style={styles.bikeName}>{item.name}</Text>
       <Text style={styles.bikePrice}>${item.price}</Text>
@@ -26,6 +27,8 @@ const BikeShopScreen = () => {
         <Text>♡</Text>
       </TouchableOpacity>
     </View>
+    </TouchableOpacity>
+   
   );
 
   return (
