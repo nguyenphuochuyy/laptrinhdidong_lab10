@@ -18,7 +18,7 @@ const AddProductScreen = ({ navigation }) => {
  
       const defaultImageUrl = 'https://huyyyy.sirv.com/Images/item4.png';
      
-      dispatch(addProduct({ name, price: parseFloat(price), imageUrl: defaultImageUrl })).then(() => {
+      dispatch(addProduct({ name, price: parseFloat(price), img: defaultImageUrl })).then(() => {
         navigation.navigate('Screen2');
       });
   };
