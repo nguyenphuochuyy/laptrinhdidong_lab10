@@ -1,24 +1,25 @@
+
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, FlatList, StyleSheet ,ActivityIndicator} from 'react-native';
+import { useEffect } from 'react';
+import { useDispatch , useSelector } from 'react-redux';
+import { fetchProducts ,addProduct } from '../productSlice';
 
-const Screen2 = () => {
+const BikeShopScreen = () => {
+    const dispatch = useDispatch();
+    const { items: bikes, status, error } = useSelector((state) => state.products);
   const [selectedCategory, setSelectedCategory] = useState('All');
-
+    useEffect(() => {
+      if (status === 'idle') {
+        dispatch(fetchProducts());
+      }
+    }, [status, dispatch]);
   const categories = ['All', 'Roadbike', 'Mountain'];
-  const bikes = [
-    { id: '1', name: 'Pinarello', price: 1800, image:  require('../assets/item1.png'), category: 'All' },
-    { id: '2', name: 'Pina Mountai', price: 1700, image: require('../assets/item2.png'), category: 'Mountain' },
-    { id: '3', name: 'Pina Bike', price: 1500, image: require('../assets/item3.png'), category: 'Roadbike' },
-    { id: '4', name: 'Pinarello', price: 1900, image: require('../assets/item4.png'), category: 'Roadbike' },
-    { id: '5', name: 'Pinarello', price: 2700, image: require('../assets/item3.png'), category: 'Mountain' },
-    { id: '6', name: 'Pinarello', price: 1350, image:require('../assets/item4.png'), category: 'All' },
-  ];
-
   const filteredBikes = selectedCategory === 'All' ? bikes : bikes.filter(bike => bike.category === selectedCategory);
 
   const renderBikeItem = ({ item }) => (
     <View style={styles.bikeCard}>
-      <Image source={item.image} style={styles.bikeImage} />
+      <Image source={{ uri: item.img}} style={styles.bikeImage} />
       <Text style={styles.bikeName}>{item.name}</Text>
       <Text style={styles.bikePrice}>${item.price}</Text>
       <TouchableOpacity style={styles.favoriteIcon}>
@@ -130,4 +131,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Screen2;
+export default BikeShopScreen;

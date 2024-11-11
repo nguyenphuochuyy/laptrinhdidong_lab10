@@ -1,27 +1,48 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Started1 from "./screens/started1"
 import Screen2 from './screens/Screen2';
+import { Provider } from 'react-redux';
+import store from "./store"
+import AddProductScreen from './screens/addproduct';
 const Stack = createStackNavigator();
 export default function App() {
   return (
-    <NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
     <Stack.Navigator initialRouteName="Started1">
       <Stack.Screen
         name="Started1"
         component={Started1}
-        options={{ headerShown: false }}
+        options={({ navigation }) => ({
+          title: 'Bike Shop',
+          headerRight: () => (
+            <Button
+              onPress={() => navigation.navigate('AddProduct')}
+              title="Add Product"
+              color="#000"
+            />
+          ),
+        })}
+
       />
          <Stack.Screen
         name="Screen2"
         component={Screen2}
         options={{ headerShown: false }}
       />
+        <Stack.Screen
+            name="AddProduct"
+            component={AddProductScreen}
+            options={{ title: 'Add New Product' }}
+          />
       
     </Stack.Navigator>
   </NavigationContainer>
+    </Provider>
+    
   );
 }
 
